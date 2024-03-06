@@ -1,34 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:house_work/config/menus.config.dart';
 
-class HwNavigationDrawer extends StatelessWidget {
+class HwNavigationDrawer extends StatefulWidget {
   const HwNavigationDrawer({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Drawer(
-        child: MediaQuery.removePadding(
-            context: context,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 40,
-                ),
-                Expanded(child: _renderNavigationItem(context)),
-              ],
-            )));
-  }
+  State<HwNavigationDrawer> createState() => _HwNavigationDrawerState();
+}
 
-  Widget _renderNavigationItem(BuildContext context) {
-    return ListView(
-        children: menus
-            .map((menu) => ListTile(
-                  title: Text(menu.label),
-                  leading: menu.icon,
-                  onTap: () {
-                    Navigator.of(context).pushNamed(menu.path);
-                  },
-                ))
-            .toList());
+class _HwNavigationDrawerState extends State<HwNavigationDrawer> {
+  int _selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return NavigationDrawer(
+      selectedIndex: _selectedIndex,
+      children: menus
+          .map((menu) => NavigationDrawerDestination(
+                icon: Icon(menu.icon),
+                label: Row(
+                  children: [
+                    Text(menu.label),
+                    Text("${menu.label}2"),
+                  ],
+                ),
+              ))
+          .toList(),
+      onDestinationSelected: (index) {
+        Navigator.of(context).pushNamed(menus[index].path);
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+    );
+
+    // return Drawer(
+    //     child: MediaQuery.removePadding(
+    //         context: context,
+    //         child: Column(
+    //           children: [
+    //             const SizedBox(
+    //               height: 40,
+    //             ),
+    //             Expanded(child: _renderNavigationItem(context)),
+    //           ],
+    //         )));
   }
 }

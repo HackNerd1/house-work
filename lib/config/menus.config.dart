@@ -5,19 +5,19 @@ class MenuItem {
 
   String label;
   String path;
-  Icon? icon;
+  IconData? icon;
   Widget? widget;
 }
 
 class MenuConfig {
   static MenuItem todo =
-      MenuItem(label: '代办', path: "/", icon: const Icon(Icons.assignment));
+      MenuItem(label: '代办', path: "/", icon: Icons.assignment);
   static MenuItem recipe =
-      MenuItem(label: '菜谱', path: "recipe", icon: const Icon(Icons.receipt));
+      MenuItem(label: '菜谱', path: "recipe", icon: Icons.receipt);
   static MenuItem houseWork =
-      MenuItem(label: '家务', path: "housework", icon: const Icon(Icons.work));
+      MenuItem(label: '家务', path: "housework", icon: Icons.work);
   static MenuItem income =
-      MenuItem(label: '收入', path: "income", icon: const Icon(Icons.money));
+      MenuItem(label: '收入', path: "income", icon: Icons.money);
 }
 
 List<MenuItem> menus = [
