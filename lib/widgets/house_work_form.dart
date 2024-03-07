@@ -3,18 +3,18 @@ import 'package:house_work/models/todo.dart';
 import 'package:house_work/utils/validators.util.dart';
 import 'package:select_form_field/select_form_field.dart';
 
-class TodoForm extends StatefulWidget {
-  const TodoForm({super.key, this.isEdit = false, this.data});
+class HouseWorkForm extends StatefulWidget {
+  const HouseWorkForm({super.key, this.isEdit = false, this.data});
 
   final bool isEdit;
 
   final Todo? data;
 
   @override
-  State<TodoForm> createState() => _TodoFormState();
+  State<HouseWorkForm> createState() => _HouseWorkFormState();
 }
 
-class _TodoFormState extends State<TodoForm> {
+class _HouseWorkFormState extends State<HouseWorkForm> {
   /* ---- 表单 ---- */
   // 代办名
   final TextEditingController _nameInputControl = TextEditingController();
@@ -40,7 +40,7 @@ class _TodoFormState extends State<TodoForm> {
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             IconButton(onPressed: _closeDialog, icon: const Icon(Icons.close)),
-            Text(widget.isEdit ? "编辑代办" : "新增代办"),
+            Text(widget.isEdit ? "编辑家务" : "新增家务"),
             TextButton(onPressed: _validateHandler, child: const Text("保存"))
           ]),
           Container(
@@ -111,12 +111,12 @@ class _TodoFormState extends State<TodoForm> {
   }
 }
 
-Future openTodoFromDialog(BuildContext context) {
+Future openHouseWorkFromDialog(BuildContext context) {
   return showDialog(
       context: context,
       builder: (context) {
         return Dialog.fullscreen(
-          child: TodoForm(),
+          child: HouseWorkForm(),
         );
       });
 }

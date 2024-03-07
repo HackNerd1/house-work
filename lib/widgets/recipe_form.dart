@@ -3,18 +3,18 @@ import 'package:house_work/models/todo.dart';
 import 'package:house_work/utils/validators.util.dart';
 import 'package:select_form_field/select_form_field.dart';
 
-class TodoForm extends StatefulWidget {
-  const TodoForm({super.key, this.isEdit = false, this.data});
+class RecipeForm extends StatefulWidget {
+  const RecipeForm({super.key, this.isEdit = false, this.data});
 
   final bool isEdit;
 
   final Todo? data;
 
   @override
-  State<TodoForm> createState() => _TodoFormState();
+  State<RecipeForm> createState() => _RecipeFormState();
 }
 
-class _TodoFormState extends State<TodoForm> {
+class _RecipeFormState extends State<RecipeForm> {
   /* ---- 表单 ---- */
   // 代办名
   final TextEditingController _nameInputControl = TextEditingController();
@@ -40,7 +40,7 @@ class _TodoFormState extends State<TodoForm> {
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             IconButton(onPressed: _closeDialog, icon: const Icon(Icons.close)),
-            Text(widget.isEdit ? "编辑代办" : "新增代办"),
+            Text(widget.isEdit ? "编辑菜谱" : "新增菜谱"),
             TextButton(onPressed: _validateHandler, child: const Text("保存"))
           ]),
           Container(
@@ -111,12 +111,12 @@ class _TodoFormState extends State<TodoForm> {
   }
 }
 
-Future openTodoFromDialog(BuildContext context) {
+Future openRecipeFromDialog(BuildContext context) {
   return showDialog(
       context: context,
       builder: (context) {
         return Dialog.fullscreen(
-          child: TodoForm(),
+          child: RecipeForm(),
         );
       });
 }
