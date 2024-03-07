@@ -21,7 +21,9 @@ class _TodoPageState extends State<TodoPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          openTodoFromDialog(context);
+        },
         child: const Icon(
           Icons.add,
         ),

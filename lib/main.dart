@@ -3,7 +3,7 @@
  * @version: 0.0.1
  * @Author: Hansel
  * @Date: 2024-03-06 21:05:39
- * @LastEditors: Hansel
+ * @LastEditors: Please set LastEditors
  * @LastEditTime: 2024-03-06 21:42:40
  */
 import 'package:flutter/material.dart';
@@ -12,8 +12,6 @@ import 'package:house_work/routes/home.page.dart';
 import 'package:house_work/routes/house_work.page.dart';
 import 'package:house_work/routes/income.page.dart';
 import 'package:house_work/routes/recipe.page.dart';
-import 'package:house_work/routes/todo.page.dart';
-import 'package:house_work/widgets/navigation_drawer.dart';
 
 void main() {
   runApp(const MyApp());
