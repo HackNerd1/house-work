@@ -12,7 +12,6 @@ class UserData {
   late List<HouseWork> houseWorks;
   late Income incomes;
   late List<Todo> todos;
-  late List<Todo> finishedTodos;
   late List<Recipe> recipes;
   
   factory UserData.fromJson(Map<String,dynamic> json) => _$UserDataFromJson(json);

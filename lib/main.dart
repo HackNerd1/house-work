@@ -4,7 +4,7 @@
  * @Author: Hansel
  * @Date: 2024-03-06 21:05:39
  * @LastEditors: Hansel
- * @LastEditTime: 2024-03-09 19:48:07
+ * @LastEditTime: 2024-03-10 20:46:02
  */
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -68,26 +68,3 @@ class _MyAppState extends State<MyApp> {
         ));
   }
 }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       theme: ThemeData(
-//         useMaterial3: true,
-//       ),
-//       // home: const TodoPage(),
-//       routes: {
-//         MenuConfig.houseWork.path: (context) => const HouseWorkPage(),
-//         MenuConfig.recipe.path: (context) => const RecipePage(),
-//         MenuConfig.income.path: (context) => const IncomePage()
-//       },
-//       builder: (context, child) {
-//         return Scaffold();
-//       },
-//     );
-//   }
-// }

@@ -2,6 +2,5 @@
   "houseWorks": "$[]houseWork",
   "incomes": "$income",
   "todos": "$[]todo",
-  "finishedTodos": "$[]todo",
   "recipes": "$[]recipe"
 }

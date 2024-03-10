@@ -4,7 +4,7 @@
  * @Author: Hansel
  * @Date: 2024-03-08 19:46:34
  * @LastEditors: Hansel
- * @LastEditTime: 2024-03-10 10:47:37
+ * @LastEditTime: 2024-03-10 20:51:10
  */
 import 'package:house_work/Global/global_data.notifier.dart';
 import 'package:house_work/models/index.dart';
@@ -17,13 +17,8 @@ class HouseWorkData extends GloabalDataNotifier {
         .toList();
   }
 
-  set houseWorks(List<HouseWork> housework) {
-    userData.houseWorks = housework;
-    notifyListeners();
-  }
-
   get length {
-    return houseWorks.length ?? 0;
+    return userData.houseWorks.length ?? 0;
   }
 
   static String getPrice(HouseWork houseWork) {

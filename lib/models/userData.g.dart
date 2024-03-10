@@ -14,9 +14,6 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData()
   ..todos = (json['todos'] as List<dynamic>)
       .map((e) => Todo.fromJson(e as Map<String, dynamic>))
       .toList()
-  ..finishedTodos = (json['finishedTodos'] as List<dynamic>)
-      .map((e) => Todo.fromJson(e as Map<String, dynamic>))
-      .toList()
   ..recipes = (json['recipes'] as List<dynamic>)
       .map((e) => Recipe.fromJson(e as Map<String, dynamic>))
       .toList();
@@ -25,6 +22,5 @@ Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
       'houseWorks': instance.houseWorks,
       'incomes': instance.incomes,
       'todos': instance.todos,
-      'finishedTodos': instance.finishedTodos,
       'recipes': instance.recipes,
     };

@@ -4,7 +4,7 @@
  * @Author: Hansel
  * @Date: 2024-03-08 19:46:34
  * @LastEditors: Hansel
- * @LastEditTime: 2024-03-10 10:09:20
+ * @LastEditTime: 2024-03-10 21:04:41
  */
 import 'package:house_work/Global/global_data.notifier.dart';
 import 'package:house_work/models/index.dart';
@@ -19,11 +19,14 @@ class TodoActions {
 }
 
 class TodoData extends GloabalDataNotifier {
-  int length = 0;
-
-  int finishedLength = 0;
-
-  int total = 0;
+  late int length;
+  late int finishedLength;
+  late int total;
+  TodoData() {
+    length = todos.length ?? 0;
+    finishedLength = finishedList.length ?? 0;
+    total = length + finishedLength;
+  }
 
   static Todo generateData(Todo? houseWork) {
     if (houseWork != null) {

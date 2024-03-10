@@ -6,7 +6,7 @@ part 'income.g.dart';
 class Income {
   Income();
 
-  late String id;
+  String? id;
   @JsonKey(defaultValue: 0) num total = 0;
   
   factory Income.fromJson(Map<String,dynamic> json) => _$IncomeFromJson(json);

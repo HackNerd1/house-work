@@ -7,7 +7,7 @@ part of 'income.dart';
 // **************************************************************************
 
 Income _$IncomeFromJson(Map<String, dynamic> json) => Income()
-  ..id = json['id'] as String
+  ..id = json['id'] as String?
   ..total = json['total'] as num? ?? 0;
 
 Map<String, dynamic> _$IncomeToJson(Income instance) => <String, dynamic>{
