@@ -6,7 +6,7 @@ part 'recipe.g.dart';
 class Recipe {
   Recipe();
 
-  String? id;
+  late String id;
   late String name;
   String? description;
   String? banner;

@@ -7,7 +7,7 @@ part of 'houseWork.dart';
 // **************************************************************************
 
 HouseWork _$HouseWorkFromJson(Map<String, dynamic> json) => HouseWork()
-  ..id = json['id'] as String?
+  ..id = json['id'] as String
   ..name = json['name'] as String
   ..banner = json['banner'] as String?
   ..description = json['description'] as String?

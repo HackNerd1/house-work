@@ -7,7 +7,7 @@ part of 'recipe.dart';
 // **************************************************************************
 
 Recipe _$RecipeFromJson(Map<String, dynamic> json) => Recipe()
-  ..id = json['id'] as String?
+  ..id = json['id'] as String
   ..name = json['name'] as String
   ..description = json['description'] as String?
   ..banner = json['banner'] as String?

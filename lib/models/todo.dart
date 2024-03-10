@@ -6,11 +6,14 @@ part 'todo.g.dart';
 class Todo {
   Todo();
 
-  String? id;
+  late String id;
   late String name;
-  late HouseWork task;
-  late String startTime;
-  late String endTime;
+  String? description;
+  String? taskId;
+  HouseWork? task;
+  String? startTime;
+  String? endTime;
+  String? finishTime;
   late bool finished;
   late bool deleted;
   

@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:house_work/models/todo.dart';
+import 'package:house_work/models/index.dart';
+import 'package:house_work/packages/recipe/recipe_data.dart';
 import 'package:house_work/utils/validators.util.dart';
-import 'package:select_form_field/select_form_field.dart';
+import 'package:provider/provider.dart';
 
-class HouseWorkForm extends StatefulWidget {
-  const HouseWorkForm({super.key, this.isEdit = false, this.data});
+class RecipeForm extends StatefulWidget {
+  const RecipeForm({super.key, this.isEdit = false, this.data});
 
   final bool isEdit;
 
-  final Todo? data;
+  final Recipe? data;
 
   @override
-  State<HouseWorkForm> createState() => _HouseWorkFormState();
+  State<RecipeForm> createState() => _RecipeFormState();
 }
 
-class _HouseWorkFormState extends State<HouseWorkForm> {
+class _RecipeFormState extends State<RecipeForm> {
   /* ---- 表单 ---- */
   // 代办名
   final TextEditingController _nameInputControl = TextEditingController();
   // 任务
-  final TextEditingController _taskInputControl = TextEditingController();
+  final TextEditingController _stepInputControl = TextEditingController();
 
   final GlobalKey _formKey = GlobalKey<FormState>();
 
@@ -27,8 +28,8 @@ class _HouseWorkFormState extends State<HouseWorkForm> {
   void initState() {
     super.initState();
     if (widget.isEdit && widget.data != null) {
-      _nameInputControl.value = widget.data!.name as TextEditingValue;
-      // form = widget.data!;
+      _nameInputControl.value = TextEditingValue(text: widget.data!.name);
+      _stepInputControl.value = TextEditingValue(text: widget.data!.steps);
     }
   }
 
@@ -40,7 +41,7 @@ class _HouseWorkFormState extends State<HouseWorkForm> {
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             IconButton(onPressed: _closeDialog, icon: const Icon(Icons.close)),
-            Text(widget.isEdit ? "编辑家务" : "新增家务"),
+            Text(widget.isEdit ? "编辑菜谱" : "新增菜谱"),
             TextButton(onPressed: _validateHandler, child: const Text("保存"))
           ]),
           Container(
@@ -56,39 +57,24 @@ class _HouseWorkFormState extends State<HouseWorkForm> {
                           label: Text("名称"),
                           hintText: "请输入名称",
                           border: OutlineInputBorder(),
-                          helperText: "帮助"),
+                          helperText: "(必填) 菜品名称"),
                       validator: (value) =>
                           validatorUtilnotEmpty(value, "请输入名称"),
                     ),
                     const SizedBox(
                       height: 20.0,
                     ),
-                    SelectFormField(
-                        type: SelectFormFieldType.dropdown,
-                        controller: _taskInputControl,
-                        decoration: const InputDecoration(
-                            label: Text("任务"),
-                            border: OutlineInputBorder(),
-                            helperText: "帮助"),
-                        items: const [
-                          {
-                            'value': 'boxValue',
-                            'label': 'Box Label',
-                            'icon': Icon(Icons.stop),
-                          },
-                          {
-                            'value': 'circleValue',
-                            'label': 'Circle Label',
-                            'icon': Icon(Icons.fiber_manual_record),
-                            'textStyle': TextStyle(color: Colors.red),
-                          },
-                          {
-                            'value': 'starValue',
-                            'label': 'Star Label',
-                            'enable': false,
-                            'icon': Icon(Icons.grade),
-                          },
-                        ])
+                    TextFormField(
+                      controller: _stepInputControl,
+                      maxLines: 6,
+                      decoration: const InputDecoration(
+                          label: Text("做法"),
+                          hintText: "请输入做法",
+                          border: OutlineInputBorder(),
+                          helperText: "(必填) 菜品做法"),
+                      validator: (value) =>
+                          validatorUtilnotEmpty(value, "请输入做法"),
+                    ),
                   ],
                 )),
           ),
@@ -104,6 +90,15 @@ class _HouseWorkFormState extends State<HouseWorkForm> {
 
   _validateHandler() {
     if ((_formKey.currentState as FormState).validate()) {
+      Recipe recipe = RecipeData.generateData(widget.data)
+        ..name = _nameInputControl.text
+        ..steps = _stepInputControl.text;
+
+      if (widget.isEdit) {
+        Provider.of<RecipeData>(context, listen: false).update(recipe);
+      } else {
+        Provider.of<RecipeData>(context, listen: false).add(recipe);
+      }
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("保存成功"), duration: Duration(milliseconds: 300)));
       _closeDialog();
@@ -111,12 +106,16 @@ class _HouseWorkFormState extends State<HouseWorkForm> {
   }
 }
 
-Future openHouseWorkFromDialog(BuildContext context) {
+Future openRecipeFromDialog(BuildContext context,
+    [Recipe? data, bool isEdit = false]) {
   return showDialog(
       context: context,
       builder: (context) {
         return Dialog.fullscreen(
-          child: HouseWorkForm(),
+          child: RecipeForm(
+            data: data,
+            isEdit: isEdit,
+          ),
         );
       });
 }

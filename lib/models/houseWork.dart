@@ -6,7 +6,7 @@ part 'houseWork.g.dart';
 class HouseWork {
   HouseWork();
 
-  String? id;
+  late String id;
   late String name;
   String? banner;
   String? description;
