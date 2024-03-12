@@ -3,7 +3,7 @@
  * @version: 0.0.1
  * @Author: Hansel
  * @Date: 2024-03-08 19:23:13
- * @LastEditors: Hansel
+ * @LastEditors: Please set LastEditors
  * @LastEditTime: 2024-03-10 20:52:49
  */
 import 'dart:convert';
@@ -29,9 +29,6 @@ class GlobalData {
     var todoData = sharedPreferences.getString("todos");
     var recipeData = sharedPreferences.getString("recipes");
     var incomeData = sharedPreferences.getString("incomes");
-
-    // print("============= init data ${todoData}");
-    // sharedPreferences.clear();
 
     try {
       if (houseWorksData != null) {
@@ -62,8 +59,6 @@ class GlobalData {
     sharedPreferences.setString("houseWorks", jsonEncode(userData.houseWorks));
     sharedPreferences.setString("todos", jsonEncode(userData.todos));
     sharedPreferences.setString("recipes", jsonEncode(userData.recipes));
-    print("=========== recipes ${jsonEncode(userData.recipes)}");
-    print("=========== incomes ${jsonEncode(userData.incomes)}");
     sharedPreferences.setString(
         "incomes", jsonEncode(userData.incomes.toJson()));
   }
